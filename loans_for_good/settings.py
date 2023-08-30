@@ -86,8 +86,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'loans_for_good.wsgi.application'
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^/api/.*$'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
