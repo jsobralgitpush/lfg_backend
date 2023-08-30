@@ -27,6 +27,11 @@ SECRET_KEY = 'django-insecure-*h&nqfe%ch=-8g58+$w5v+frg*g)y4cq%nro^w5l48fm0j1k0f
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://172.28.0.6:3000"
+]
 
 
 # Application definition
@@ -38,12 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'proposal',
-    'eav'
+    'eav',
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +62,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'loans_for_good.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
 
 TEMPLATES = [
     {
@@ -72,7 +86,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'loans_for_good.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
