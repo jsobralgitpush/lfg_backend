@@ -10,6 +10,12 @@
 ## Demo
 
 ## How to build the project
+To build the project, you have to download this repo and the [frontend](https://github.com/jsobralgitpush/lfg_frontend_redux) one. After that, create an app tree like this
+```
+|-- loans_for_good_backend
+|-- loans_for_good_frontend
+|-- docker-compose.yml
+```
 
 ## Project explanation
 
