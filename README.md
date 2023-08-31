@@ -9,9 +9,15 @@
 - [References](#references)
 
 ## Demo
+### Frontend
+https://loansforgoodfrontend-06732fd2e7f8.herokuapp.com/
+
+### Django admin
+https://loans-for-good-backend-55c8893b4944.herokuapp.com/admin/
 
 ## How to build the project
 To build the project, you have to download this repo and the [frontend](https://github.com/jsobralgitpush/lfg_frontend_redux) one. After that, create an app tree like this
+### App tree
 ```
 (root)
 ├── loans_for_good_backend
@@ -20,7 +26,7 @@ To build the project, you have to download this repo and the [frontend](https://
 └── docker-compose.yml
 ```
 and use this `docker-compose.yml`, setting the following `config-vars` as your preference or use the current ones from the example (just to test the app)
-- env
+### env
 ```
 POSTGRES_DB=
 POSTGRES_USER=
@@ -28,8 +34,9 @@ POSTGRES_PASSWORD=
 DEBUG=
 DATABASE_URL=
 REACT_APP_API_HOSTNAME=
+REDIS_URL=
 ```
-- docker-compose.yml
+### docker-compose.yml
 ```
 version: '3.8'
 
@@ -56,6 +63,7 @@ services:
     environment:
       DEBUG: 'True'
       DATABASE_URL: postgresql://myuser:mypassword@db:5432/mydatabase
+      REDIS_URL: redis://redis:6379/0
 
   frontend:
     build:
@@ -73,6 +81,7 @@ services:
     image: "redis:latest"
     ports:
       - "6379:6379"
+      
 
   celery:
     build:
@@ -85,10 +94,31 @@ services:
       - redis
     environment:
       DATABASE_URL: postgresql://myuser:mypassword@db:5432/mydatabase
+      REDIS_URL: redis://redis:6379/0
+
 
 volumes:
   postgres_data:
 
+```
+### Django admin
+Create an `superuser` to access `localhost:8000/admin` panel to create new `Attributes`. To do this, execute:
+```
+docker ps
+
+# Check the container ID of backend container, in my case above, it's 3a09cf8078cd
+CONTAINER ID   IMAGE                  COMMAND                  CREATED        STATUS         PORTS                                                 NAMES
+8000889d73da   digital_sys_celery     "celery -A loans_for…"   2 hours ago    Up 6 minutes                                                         digital_sys_celery_1
+341acdaf85aa   redis:latest           "docker-entrypoint.s…"   2 hours ago    Up 6 minutes   0.0.0.0:6379->6379/tcp, :::6379->6379/tcp           digital_sys_redis_1
+1f99eb2d240c   digital_sys_frontend   "docker-entrypoint.s…"   2 hours ago    Up 6 minutes   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp             digital_sys_frontend_1
+3a09cf8078cd   digital_sys_backend    "python manage.py ru…"   2 hours ago    Up 6 minutes   0.0.0.0:8000->8000/tcp, :::8000->8000/tcp             digital_sys_backend_1
+ad5ed0dc7973   postgres:13            "docker-entrypoint.s…"   30 hours ago   Up 6 minutes   5432/tcp                                              digital_sys_db_1
+
+# open container bash
+docker exec -it <container-id> bash
+
+# create super user
+python manage.py createsuperuser
 ```
 
 ## Project explanation
@@ -148,6 +178,15 @@ Proposal.objects.filter(eav__city='RJ')
 ```
 
 ## Test Coverage
+To execute the tests, run:
+```
+coverage run manage.py test
+```
+To check test coverage:
+```
+coverage report
+```
+Full test coverage output:
 ```
 Name                                                Stmts   Miss  Cover
 -----------------------------------------------------------------------
@@ -176,3 +215,8 @@ proposal/views.py                                      31      0   100%
 -----------------------------------------------------------------------
 TOTAL                                                 254      4    98%
 ```
+
+## References
+- [Django for APIs](https://djangoforapis.com/)
+- [Django Rest Framwork quickstart](https://realpython.com/django-rest-framework-quick-start/)
+- https://github.com/testdrivenio/django-aloe-bdd
