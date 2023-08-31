@@ -142,12 +142,21 @@ Finnaly, we'are using an [external API]() to send the proposal fields to our int
 We choose to use `EAV` pattern since the company needs to register new `attributes` dinamically in the `Django Admin` panel. By the limitations of `ORM` (`Data Integrity`, `Tracebility` and `Consistency`) we cannot do that changing the `schema`. To do so, we are using the `django-eav2` lib which provides a customized solution for it that makes easy to `read`, `create` and `filter` new attributes to a current model
 
 ### Create new attributes
+#### Console
 ```
 from eav.models import Attribute
 
 Attribute.objects.create(name='City', slug='city', datatype=Attribute.TYPE_TEXT)
 Attribute.objects.create(name='Job Title', slug='job_title', datatype=Attribute.TYPE_TEXT)
 ```
+
+#### Django Amin
+1. Select the Data Type (Text suggested)
+2. Give a human name to `Attribute`
+3. Select `proposal` and Entity Content Type
+4. Save
+![image](https://github.com/jsobralgitpush/lfg_backend/assets/63429525/956ca43d-d461-4a6b-875e-f33fd0175286)
+
 
 ### Read Values
 ```
