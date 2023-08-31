@@ -19,7 +19,7 @@ class ProposalAttributesView(mixins.ListModelMixin, generics.GenericAPIView):
 
 
 class ProposalList(generics.ListCreateAPIView):
-    queryset = Proposal.objects.all()
+    queryset = Proposal.objects.all().order_by('-last_updated')
     serializer_class = ProposalSerializer
 
     def create(self, request, *args, **kwargs):
