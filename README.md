@@ -1,4 +1,4 @@
-# Loans For Good - Backend (work in progress)
+# Loans For Good - Backend
 
 ## Summary
 - [Demo](#demo)
@@ -135,7 +135,7 @@ last_updated = models.DateTimeField(auto_now=True) -> the time of last updat on 
 
 Besides that, the `Proposal` model is plugged with an `EAV` [entity value attribute](https://inviqa.com/blog/understanding-eav-data-model-and-when-use-it) pattern which makes possible to register new attributes to proposal, like `city`, `address_line`, `state`, `current_job` or whatever. The new attributes registration occurs on `Django Admin` and uses [`django-eav-2`](https://django-eav2.readthedocs.io/en/latest/) lib under the hood. All new attributes registered in `Django Admin` will be sent dinamically to frontend. [Further explanations of how `django-eav2` works will be discuss latter](#eav-explanation).
 
-Finnaly, we'are using an [external API]() to send the proposal fields to our internal system to be 'approved' or 'denied', using a background job for that, plugged in [`Celery`](https://docs.celeryq.dev/en/stable/getting-started/introduction.html) and [`Redis`](https://redis.io/docs/)
+Finnaly, we'are using an external API to send the proposal fields to our internal system to be 'approved' or 'denied', using a background job for that, plugged in [`Celery`](https://docs.celeryq.dev/en/stable/getting-started/introduction.html) and [`Redis`](https://redis.io/docs/)
 
 
 ## EAV explanation
