@@ -155,6 +155,7 @@ Attribute.objects.create(name='Job Title', slug='job_title', datatype=Attribute.
 2. Give a human name to `Attribute`
 3. Select `proposal` and Entity Content Type
 4. Save
+
 ![image](https://github.com/jsobralgitpush/lfg_backend/assets/63429525/956ca43d-d461-4a6b-875e-f33fd0175286)
 
 
