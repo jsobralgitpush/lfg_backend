@@ -30,7 +30,8 @@ ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://172.28.0.6:3000"
+    "http://172.28.0.6:3000",
+    "https://loansforgoodfrontend-06732fd2e7f8.herokuapp.com"
 ]
 
 
