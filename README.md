@@ -6,6 +6,7 @@
 - [Project explanation](#project-explanation)
 - [EAV explanation](#eav-explanation)
 - [Test Coverage](#test-coverage)
+- [Code Style](#code-style)
 - [References](#references)
 
 ## Demo
@@ -214,6 +215,11 @@ proposal/urls.py                                        4      0   100%
 proposal/views.py                                      31      0   100%
 -----------------------------------------------------------------------
 TOTAL                                                 254      4    98%
+```
+## Code Style
+In this code base we're using the [`PEP8`](https://peps.python.org/pep-0008/) style. We configured a `pre-commit` hooker to prevent us to commit without `PEP8` format. To run autofix, before commits execute:
+```
+pre-commit run --all-files
 ```
 
 ## References
