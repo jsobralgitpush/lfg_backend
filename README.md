@@ -178,6 +178,15 @@ Proposal.objects.filter(eav__city='RJ')
 ```
 
 ## Test Coverage
+To execute the tests, run:
+```
+coverage run manage.py test
+```
+To check test coverage:
+```
+coverage report
+```
+Full test coverage output:
 ```
 Name                                                Stmts   Miss  Cover
 -----------------------------------------------------------------------
@@ -206,3 +215,8 @@ proposal/views.py                                      31      0   100%
 -----------------------------------------------------------------------
 TOTAL                                                 254      4    98%
 ```
+
+## References
+- [Django for APIs](https://djangoforapis.com/)
+- [Django Rest Framwork quickstart](https://realpython.com/django-rest-framework-quick-start/)
+- https://github.com/testdrivenio/django-aloe-bdd
