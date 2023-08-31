@@ -8,3 +8,5 @@ flake8==6.1.0
 autopep8==2.0.3
 django-eav2==1.4.0
 coverage==7.3.0
+requests==2.31.0
+django-cors-headers==4.2.0
